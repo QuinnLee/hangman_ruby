@@ -1,2 +1,2 @@
-require "hangman"
+require "game"
 require "pry"

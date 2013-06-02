@@ -28,12 +28,4 @@ describe Words do
     end
   end
 
-  describe "#shuffle" do
-    it "randomly shuffles the word_bank" do
-      old_words = words.word_bank.dup
-      words.shuffle
-      expect(old_words).to_not eql(words.word_bank)
-    end
-  end
-
 end

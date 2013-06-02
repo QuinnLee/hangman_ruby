@@ -1,6 +1,6 @@
 class Players
   include Enumerable
-  attr_accessor :names
+  attr_reader :names
 
   def initialize
     @names = []
@@ -16,5 +16,7 @@ class Players
 
   def add_names(name)
     @names << name
+    @names.map(&:downcase)
   end
+
 end

@@ -21,8 +21,4 @@ class Words
     get_word.split(//)
   end
 
-  def shuffle
-    @word_bank.shuffle!
-  end
-
 end
