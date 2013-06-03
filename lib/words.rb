@@ -18,7 +18,6 @@ class Words
   def get_word
     random_index = rand(@word_bank.size)
     get_word = @word_bank.delete_at(random_index)
-    get_word.split(//)
   end
 
 end

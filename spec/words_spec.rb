@@ -21,10 +21,7 @@ describe Words do
     end
     it "returns an array of characters"do
       array_of_char = words.get_word
-      expect(array_of_char).to be_an_instance_of(Array)
-      array_of_char.each do |char|
-        expect(char).to be_an_instance_of(String)
-      end
+      expect(array_of_char).to be_an_instance_of(String)
     end
   end
 

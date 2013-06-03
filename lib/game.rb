@@ -1,85 +1,54 @@
-require_relative "players"
-require_relative "words"
 
 class Game
-  attr_reader :words, :players, :current_word
-  attr_reader :display_word
+  attr_reader :word, :game_word, :display_word, :game_over
 
   def initialize
     @words = Words.new
-    @players = Players.new
+    start
   end
 
-  def check_player_count(number)
-    if number.between?(1,5)
-      true
-    else
-      puts "Number is invalid"
-      false
-    end
+  def set_word
+    @word = @words.get_word
   end
 
-  def check_player_name(name)
-    if @players.include?(name)
-      puts "#{name} is taken, please repick"
-      false
-    else
-      true
-    end
-  end
-
-  def set_player_name(name)
-    @players.add_names(name)
-  end
-
-  def get_word
-    @current_word = @words.get_word
+  def set_game_word
+    @game_word = @word.split(//)
   end
 
   def set_display_word
-    size = @current_word.size
-    @display_word = Array.new(size)
+    @display_word = Array.new(@game_word.size)
+    @display_word.map! { |e| "_" }
   end
 
-  def set_number
-    puts "How many players are in the game ? (1-5): "
-    number = gets.chomp.to_i
-    set_number unless check_player_count(number)
-    return number
+  def compare_string(guess)
+    @game_over = true if guess.downcase.eql? @word
   end
 
-  def set_one_player
-    puts "What is the player's name"
-    name = gets.chomp.downcase
-    set_one_player unless check_player_name(name)
-    return name
+  def compare_char(char)
+    true if @game_word.include? char
   end
 
-  def set_players
-    number_of_players = set_number
-    number_of_players.times do
-      set_player_name(set_one_player)
+  def place_char(char)
+    @game_word.each_index do |index|
+      @display_word[index] = char if @game_word[index] == char
     end
   end
 
-  def set_guess
-    puts "guess a letter"
-    letter = gets.chomp
-    if letter.size >1
-      puts "too long"
-      set_guess
-    end
-    return letter.downcase
+  def return_display_word
+    @display_word.join (" ")
   end
 
-  def check_guess(guess)
-    if @current_word.include?(guess)
-      true
-    else
-      false
+  def win?
+    @game_over = true if @game_word == @display_word
   end
 
-  def 
+  def start
+    @game_over = false
+    set_word
+    set_game_word
+    set_display_word
+  end
 
 end
+
 

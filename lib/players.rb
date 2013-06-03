@@ -11,12 +11,16 @@ class Players
   end
 
   def shuffle
-    @names.shuffle!
+    @names.rotate!
   end
 
-  def add_names(name)
+  def add_name(name)
     @names << name
     @names.map(&:downcase)
+  end
+
+  def check_name(name)
+    true unless names.include?(name.downcase)
   end
 
 end
