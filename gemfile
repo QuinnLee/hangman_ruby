@@ -1,5 +1,12 @@
+# Need to declare the source for finding the gems you're going to use
+source "http://rubygems.org"
+
 group :test do
   gem "rspec"
 end
 
-gem random-word
+# Doesn't work without the quotes
+gem 'random-word'
+
+# You need to have this in the Gemfile if you're going to require it
+gem 'pry'
