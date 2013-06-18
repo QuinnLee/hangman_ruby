@@ -12,8 +12,8 @@ class Runner
     @players.shuffle
   end
 
-  def is_player_count_valid?(number)
-    true if number.between?(1,5)
+  def is_player_count_valid?(count)
+    count.between?(1,5)
   end
 
   def get_player_count
