@@ -5,7 +5,8 @@ require_relative "game"
 class Runner
 
   def initialize
-    @game = Game.new
+    @words = Words.new
+    @game = Game.new(@words.get_word)
     @players = Players.new
     get_player_names
     @players.shuffle
@@ -65,8 +66,8 @@ class Runner
       puts "NICE"
     else
       puts "FAIL"
-    end 
-    @game.place_char(char)  
+    end
+    @game.place_char(char)
   end
 
   def display_remainder

@@ -1,14 +1,9 @@
-
 class Game
   attr_reader :word, :game_word, :display_word, :game_over
 
-  def initialize
-    @words = Words.new
+  def initialize(word)
+    @word = word
     start
-  end
-
-  def set_word
-    @word = @words.get_word
   end
 
   def set_game_word
@@ -44,11 +39,8 @@ class Game
 
   def start
     @game_over = false
-    set_word
     set_game_word
     set_display_word
   end
-
 end
-
 
