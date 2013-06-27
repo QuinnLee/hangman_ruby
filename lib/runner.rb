@@ -5,8 +5,8 @@ require_relative "game"
 class Runner
 
   def initialize
-    @words = Words.new
-    @game = Game.new(@words.get_word)
+    @word_bank = WordBank.new
+    @game = Game.new(@word_bank.get_word)
     @players = Players.new
     get_player_names
     @players.shuffle

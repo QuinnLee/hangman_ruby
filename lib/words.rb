@@ -1,23 +1,24 @@
 require "random-word"
 
-class Words
+class WordBank
   include Enumerable
-  attr_reader :word_bank
+  attr_reader :words
+
   def initialize
-    @word_bank =[]
-    until @word_bank.count >= 50 do
+    @words =[]
+
+    until @words.count >= 50 do
       word = RandomWord.nouns.next
-      @word_bank << word unless word.include? "_"
+      @words << word unless word.include? "_"
     end
   end
 
   def each(&block)
-    @word_bank.each(&block)
+    @words.each(&block)
   end
 
   def get_word
-    random_index = rand(@word_bank.size)
-    get_word = @word_bank.delete_at(random_index)
+    random_index = rand(@words.size)
+    get_word = @words.delete_at(random_index)
   end
-
 end
