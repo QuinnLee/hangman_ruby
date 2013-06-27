@@ -4,13 +4,9 @@ describe WordBank do
   let(:word_bank){ WordBank.new }
 
   describe "#new" do
-    it "generates a list of 50 words" do
+    it "has a list of 50 words" do
       words = word_bank.words
-      expect(words).to be_an_instance_of(Array)
-
-      word_bank.each do |word|
-        expect(word).to be_an_instance_of(String)
-      end
+      expect(words.count).to eq 50
     end
   end
 
