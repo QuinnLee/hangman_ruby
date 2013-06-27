@@ -1,5 +1,5 @@
 require_relative "players"
-require_relative "words"
+require_relative "word_bank"
 require_relative "game"
 
 class Runner
