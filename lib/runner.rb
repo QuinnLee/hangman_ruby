@@ -1,22 +1,22 @@
 require_relative "players"
-require_relative "words"
+require_relative "word_bank"
 require_relative "game"
-
 class Runner
 
   def initialize
-    @game = Game.new
+    @word_bank = WordBank.new
+    @game = Game.new(@word_bank.get_word)
     @players = Players.new
     get_player_names
     @players.shuffle
   end
 
   def is_player_count_valid?(number)
-    true if number.between?(1,5)
+    number.between?(1,5)
   end
 
   def get_player_count
-    puts "How many Players are there ?  (1-5)"
+    puts "How many Players are there?  (1-5)"
     number = gets.chomp.to_i
     unless is_player_count_valid?(number)
       puts "INVALID NUMBER"
@@ -46,12 +46,26 @@ class Runner
   def ask_for_a_char
     puts "Guess a character or type ! to guess!!"
     guess = gets.chomp
+
+    if already_guessed?(guess)
+      puts "Already guessed noob"
+      ask_for_a_char
+    end
+
     if guess == '!'
       all_or_nothing(guess)
-    else
+    elsif guess.length  == 1 
       place_char(guess)
       @game.win?
+    else
+      puts "NOT A CHAR"
+      ask_for_a_char
     end
+    display_remainder
+  end
+
+  def already_guessed?(guess)
+    @game.used_words.include?(guess)
   end
 
   def all_or_nothing(guess)
@@ -75,8 +89,9 @@ class Runner
 
   def one_round
     @players.each do |player|
+      puts " "
+      puts "****************************"
       puts "#{player} what is your guess?"
-      display_remainder
       ask_for_a_char
       if @game.game_over
         puts "The word is: #{@game.word}"

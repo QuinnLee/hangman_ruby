@@ -11,7 +11,7 @@ class Players
   end
 
   def shuffle
-    @names.rotate!
+    @names.shuffle!
   end
 
   def add_name(name)

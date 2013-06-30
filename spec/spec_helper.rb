@@ -1,4 +1,4 @@
 require "players"
 require "game"
-require "words"
+require "word_bank"
 require "pry"

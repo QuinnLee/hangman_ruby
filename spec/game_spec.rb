@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Game do
-  let(:game){Game.new}
+  let(:game) { Game.new("hello") }
   describe "#new" do
     it "sets game_word" do
       display = game.game_word

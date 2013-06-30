@@ -1,14 +1,9 @@
-
 class Game
-  attr_reader :word, :game_word, :display_word, :game_over
+  attr_reader :word, :game_word, :display_word, :game_over, :used_words
 
-  def initialize
-    @words = Words.new
+  def initialize(word)
+    @word = word
     start
-  end
-
-  def set_word
-    @word = @words.get_word
   end
 
   def set_game_word
@@ -29,6 +24,7 @@ class Game
   end
 
   def place_char(char)
+    @used_words << char
     @game_word.each_index do |index|
       @display_word[index] = char if @game_word[index] == char
     end
@@ -44,11 +40,9 @@ class Game
 
   def start
     @game_over = false
-    set_word
+    @used_words = []
     set_game_word
     set_display_word
   end
 
 end
-
-
