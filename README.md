@@ -4,6 +4,6 @@ Text based hangman.
 
 
 To play a new game create a new runner object call the 'play' method
-'''ruby
+```ruby
 Runner.new.play
-'''
+```
